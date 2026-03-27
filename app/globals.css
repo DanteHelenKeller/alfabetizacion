@@ -1,0 +1,124 @@
+/* globals.css — App de Alfabetización */
+
+@import "tailwindcss";
+
+/* ── Fuente Nunito ── */
+:root {
+  --font-nunito: "Nunito", sans-serif;
+}
+
+/* ── Fondo base ── */
+html,
+body {
+  background-color: #0d0d1a;
+  color: #ffffff;
+  font-family: var(--font-nunito), sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Animación de entrada de tarjetas ── */
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-in {
+  animation: card-in 0.4s ease both;
+}
+
+/* ── Focus ring global: amarillo grueso para accesibilidad ── */
+:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px #facc15; /* yellow-400 */
+}
+
+/* Excepción: los botones de GlowCard ya tienen su propio ring */
+button:focus-visible {
+  box-shadow: 0 0 0 3px #facc15;
+}
+
+/* ── Skip link de accesibilidad ── */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.skip-link:focus {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  width: auto;
+  height: auto;
+  background: #facc15;
+  color: #000;
+  font-weight: 900;
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  z-index: 9999;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Tipografía accesible por tamaño configurado ── */
+/* El tamaño base se controla desde config-context.tsx 
+   aplicándolo al root via document.documentElement.style.fontSize */
+
+/* Texto de alta legibilidad para baja visión */
+.text-accesible {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+
+/* Letra gigante para módulo de letras */
+.letra-gigante {
+  font-size: clamp(6rem, 20vw, 12rem);
+  line-height: 1;
+  font-weight: 900;
+}
+
+/* ── Opciones de juego ── */
+.opcion-btn {
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.opcion-btn:hover {
+  transform: translateY(-2px);
+}
+
+.opcion-btn:active {
+  transform: scale(0.97);
+}
+
+/* ── Feedback de respuesta ── */
+@keyframes correcto-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(85, 239, 196, 0.7); }
+  70% { box-shadow: 0 0 0 12px rgba(85, 239, 196, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(85, 239, 196, 0); }
+}
+
+@keyframes incorrecto-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+.feedback-correcto {
+  animation: correcto-pulse 0.6s ease;
+}
+
+.feedback-incorrecto {
+  animation: incorrecto-shake 0.4s ease;
+}

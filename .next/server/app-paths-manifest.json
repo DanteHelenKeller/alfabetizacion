@@ -1,0 +1,8 @@
+{
+  "/page": "app/page.js",
+  "/palabras/page": "app/palabras/page.js",
+  "/completar/page": "app/completar/page.js",
+  "/armar/page": "app/armar/page.js",
+  "/oraciones/page": "app/oraciones/page.js",
+  "/configuracion/page": "app/configuracion/page.js"
+}
